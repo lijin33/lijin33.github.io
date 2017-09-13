@@ -1,4 +1,16 @@
-tags: [Appium, Android] 
+---
+layout:     post              # 使用的布局（不需要改）
+title:      Appium TouchAction报错        # 标题 
+subtitle:   我犯了愚蠢的错误=.=               #副标题
+date:       2017-08-22        # 时间
+author:     Lacia           # 作者
+header-img: img/post-bg-2015.jpg  #这篇文章标题背景图片
+catalog: true             # 是否归档
+tags:               #标签
+    - Android
+    - Appium
+    - Automation
+---
 
 想自己封装一个long press之后move的关键字，然后把自己搞进了坑里
 

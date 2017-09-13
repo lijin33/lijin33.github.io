@@ -1,4 +1,15 @@
-tags: [Selenium, RobotFramework] 
+---
+layout:     post              # 使用的布局（不需要改）
+title:      记两个和javascript有关的问题        # 标题 
+subtitle:                  #副标题
+date:       2017-09-08        # 时间
+author:     Lacia           # 作者
+header-img: img/post-bg-2015.jpg  #这篇文章标题背景图片
+catalog: true             # 是否归档
+tags:               #标签
+    - robotframework
+    - javascript
+---
 
 1、跑web自动化时遇到下面这种日历框，如何选择日期值
 

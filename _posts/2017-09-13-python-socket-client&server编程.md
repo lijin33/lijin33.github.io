@@ -1,4 +1,15 @@
-tags: [Python,] 
+---
+layout:     post              # 使用的布局（不需要改）
+title:      python-socket-client&server编程        # 标题 
+subtitle:                  #副标题
+date:       2017-09-13        # 时间
+author:     Lacia           # 作者
+header-img: img/post-bg-2015.jpg  #这篇文章标题背景图片
+catalog: true             # 是否归档
+tags:               #标签
+    - python
+    - socket
+---
 
 6月份的时候在组里讲了HTTP协议，之后准备要写模拟器，但是迟迟没有动手，就这么拖了两个月_(:з」∠)_ 
 
