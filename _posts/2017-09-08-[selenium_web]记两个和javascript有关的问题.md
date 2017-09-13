@@ -1,3 +1,5 @@
+tags: [Selenium, RobotFramework] 
+
 1、跑web自动化时遇到下面这种日历框，如何选择日期值
 
 ![image.png](http://upload-images.jianshu.io/upload_images/4886646-471e7983ae7c8f54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

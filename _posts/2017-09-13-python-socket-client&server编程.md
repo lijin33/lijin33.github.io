@@ -1,3 +1,5 @@
+tags: [Python,] 
+
 6月份的时候在组里讲了HTTP协议，之后准备要写模拟器，但是迟迟没有动手，就这么拖了两个月_(:з」∠)_ 
 
 不能再拖啦，于是找了找资料，今天完成了基础的部分：server和client连接上了♪(^∇^*)，更细致的需求这周慢慢搞，和appium穿插着♂搞
@@ -10,13 +12,15 @@ import socket   #for sockets
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print 'Socket Created'
 ```
-socket.socket(Address family, Type):用于创建一个socket，返回值为socket的描述符
+socket.socket(Address family, Type): 用于创建一个socket，返回值为socket的描述符  
+
 Address family: AF_INET（用户Internet进程间通信），AF_UNIX（用于同一台机器上的进程间通信）
-Type: 套接字类型，SOCKET_STREAM主要用于TCP协议，SOCKET_DGRAM主要用于UDP协议
+Type: 套接字类型，SOCKET_STREAM主要用于TCP协议，SOCKET_DGRAM主要用于UDP协议  
+
 如创建socket失败，会抛出socket.error异常，可用except进行捕获
 
 socket.gethostbyname()，可以根据名字获取远程主机的IP：
-  
+
     1 #!/usr/bin/python
     2 import socket
     3 import sys
@@ -34,7 +38,7 @@ socket.gethostbyname()，可以根据名字获取远程主机的IP：
 Socket Connected to www.baidu.com on ip 61.135.169.125
 ```
 
-######Server.py
+#####Server.py
 ```
 #-*- coding:utf-8 -*-
   2 #!/usr/bin/python
@@ -96,7 +100,7 @@ Socket Connected to www.baidu.com on ip 61.135.169.125
  57 s.close()
 ```
 
-######Client.py
+#####Client.py
 ```
 
   1 #!/usr/bin/python
@@ -124,14 +128,14 @@ Socket Connected to www.baidu.com on ip 61.135.169.125
 
 其他需求还包含：
 1、客户端：
-a.可以通过读取文件的方式发送请求
-b.支持消息发送速度配置
-c.支持消息类型配置(我猜是POST、GET配置)
-d.支持内容编码配置(UTF-8、Unicode、GBK等)
+​    a.可以通过读取文件的方式发送请求
+​    b.支持消息发送速度配置
+​    c.支持消息类型配置(我猜是POST、GET配置)
+​    d.支持内容编码配置(UTF-8、Unicode、GBK等)
 2、服务端：
-a.可计算每秒接收客户端请求数量
-b.支持给客户端发送不同状态码
-3、连接方式：支持长连接和短连接
+​    a.可计算每秒接收客户端请求数量
+​    b.支持给客户端发送不同状态码
+3、连接方式：支持长连接和短连接 
 最终成型的模拟器大概是需要5000个消息并发，有的需求还没看明白，慢慢来吧，哎，争取这个迭代完成嗯0v0
 
 
@@ -139,6 +143,9 @@ b.支持给客户端发送不同状态码
 2017-08-29更新：
 我觉得自己真是太蠢了，直接起个httpserver就好了嘛，浪费那么久时间SAD
 不知道这个SimpleHTTPServer经不经受得起每秒上千的轰炸
+
+
+
 
 
 
