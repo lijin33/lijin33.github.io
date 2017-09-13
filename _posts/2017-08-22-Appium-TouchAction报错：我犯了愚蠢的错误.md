@@ -1,4 +1,7 @@
+tags: [Appium, Android] 
+
 想自己封装一个long press之后move的关键字，然后把自己搞进了坑里
+
 报错如下：
 ```Traceback (most recent call last):
   File "C:\Users\js\Desktop\test.py", line 30, in <module>
