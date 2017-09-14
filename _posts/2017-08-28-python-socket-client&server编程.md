@@ -49,7 +49,8 @@ socket.gethostbyname()，可以根据名字获取远程主机的IP：
 Socket Connected to www.baidu.com on ip 61.135.169.125
 ```
 
-###Server.py
+
+###### Server.py
 ```
 #-*- coding:utf-8 -*-
   2 #!/usr/bin/python
@@ -111,7 +112,7 @@ Socket Connected to www.baidu.com on ip 61.135.169.125
  57 s.close()
 ```
 
-###Client.py
+###### Client.py
 ```
 
   1 #!/usr/bin/python
