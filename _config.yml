@@ -94,13 +94,15 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "简书·Lacia",
-        href: "http://www.jianshu.com/u/3c3af2c0d8f5"
-    },{
-        title: "Apple",
-        href: "https://apple.com"
-    },{
-        title: "Apple Developer",
-        href: "https://developer.apple.com/"
+        title: "腾讯TMQ",
+        href: "http://tmq.qq.com/"
+    },
+    {
+        title: "TesterHome",
+        href: "https://testerhome.com"
+    },
+    {
+        title: "Android Developer",
+        href: "https://developer.android.com"
     }
 ]
