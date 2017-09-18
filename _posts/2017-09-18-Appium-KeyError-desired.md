@@ -1,7 +1,7 @@
 ---
 layout:     post              # 使用的布局（不需要改）
-title:      Appium KeyError:'desired'        # 标题 
-subtitle:                 #副标题
+title:      KeyError:'desired'问题解决        # 标题 
+subtitle:   定时更新library很重要哇=。=                  #副标题
 date:       2017-09-18        # 时间
 author:     Lacia           # 作者
 header-img: img/post-bg-2015.jpg  #这篇文章标题背景图片
@@ -14,7 +14,7 @@ tags:               #标签
 ---
 
 
-### Appium-KeyError: 'desired'
+### Appium KeyError: 'desired'
 
 之前在Appium1.6.5-新坑旧坑一起坑时说起了这个问题，刚才又仔细看了一下，发现其实是AppiumLibrary版本的问题  
 
