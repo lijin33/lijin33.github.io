@@ -11,7 +11,7 @@ tags:               #标签
     - Socket 
 ---
 
-##### 唠叨
+#### 唠叨
 
 前一阵子在看<Python核心编程>这本书，说起来也是断断续续的在看，今天看到这本书在socket这张已经有了折痕，实在是不忍心，于是往下看了看嗯……  
 
@@ -19,7 +19,7 @@ tags:               #标签
 
 
 
-##### Socket
+#### Socket是啥
 
 在C/S架构中作为“通信端点”的东西，书中把它比作“电话插孔”，有点生动形象。  
 
@@ -33,7 +33,7 @@ tags:               #标签
 
 
 
-##### 不同风格的套接字  
+#### 不同风格的套接字  
 
 面向连接的套接字 vs 无连接的套接字  
 
@@ -41,11 +41,12 @@ TCP vs UDP
 
 
 
-##### Python Socket 编程
+#### Python Socket 编程
 
-###### socket()模块函数  
 
-`socket(socket_family, socket_type, protocol=0)`  
+##### socket()模块函数  
+
+socket(socket_family, socket_type, protocol=0) 
 
 *socket_family* : AF_UNIX或AF_INET  
 
@@ -53,15 +54,15 @@ TCP vs UDP
 
 
 
-###### 套接字对象方法  
+##### 套接字对象方法  
 
 前提：s = socket(AF_INET,SOCK_STREAM)
 
-###### # 服务端
+###### 服务端
 
 *s.bind()* : 将地址和端口绑定到socket上   
 
-*<e.g>*
+<e.g>
 
 ```python
 ADDR = (HOST, PORT)
@@ -71,17 +72,19 @@ s = socket(AF_INET, SOCK_STREAM)
 s.bind(ADDR)
 ```
 
-s.listen()* : 开始监听  
+*s.listen()* : 开始监听  
 
 *s.accept()* : 被动接受客户端连接，一直等待知道连接到达（没用明白）
 
-###### # 客户端
+
+##### # 客户端
 
 *s.connect()* : 主动发起连接
 
-*s.connect()* : 主动发起连接，如有问题则返回错误码  
+*s.connect()* : 主动发起连接，如有问题则返回错误码 
 
-###### # 普通的套接字方法(仅列举当前用到的)  
+
+##### # 普通的套接字方法(仅列举当前用到的)  
 
 *s.recv()* : 接受TCP消息  
 
@@ -99,9 +102,9 @@ s.listen()* : 开始监听
 
 
 
-##### SocketServer
+#### SocketServer
 
-###### # Server.py
+##### # Server.py
 
 ```
 #-*-coding:UTF-8-*-
@@ -134,7 +137,7 @@ tcpServ.serve_forever()
 
 
 
-###### # Client.py
+##### # Client.py
 
 ```
 #-*-coding:UTF-8-*-
@@ -167,7 +170,8 @@ while True:
 	s.close()
 ```
 
-###### # 运行结果    
+
+##### # 运行结果    
 
 客户端，打印服务端返回的时间戳
 
@@ -183,9 +187,11 @@ while True:
 
 
 
-##### 结束
+#### 结束
 
-太困了，细节和剩下的以后再说吧，先坑着…
+太困了，细节和剩下的以后再说吧，先坑着…  
+
+每次发出去之后再看都会发现很多typo…markdown大法还是练的不够啊！
 
 
 
