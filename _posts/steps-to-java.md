@@ -49,3 +49,78 @@ for(int i=0;i<lis.size();i++)
 }
 ```
 
+
+
+int类型强制转换为string
+
+```
+int a = 10;
+String s = "";
+s = String.valueOf(a);
+```
+
+
+
+```
+public static int nbDig(int n, int d) {
+	
+	int res = 0;
+	char c = Integer.toString(d).charAt(0);
+	int sum = 0;
+	//char[] c;
+	String a = "";
+	for(int i=0;i<=n;i++){
+		sum = i*i;
+		a = "" + String.valueOf(sum);
+		for(int j=0;j<a.length();j++){
+			if(a.charAt(j)==c){
+				res++;
+			}
+		}
+	}
+	//System.out.println(a);
+
+	
+	return res;
+```
+
+```
+Character.getNumericValue(numChar)
+```
+
+```
+//字符数组转换为字符串
+strStringType= String.valueOf(chrCharArray);
+```
+
+
+
+通过句柄和指针直接访问对象
+
+
+
+System.arraycopy()实现数组间的复制：
+
+```
+public static void (Object src,int srcPos,Object dest,int destPos,int length)
+/*
+src:源数组
+srcPos:源数组要复制的起始位置
+dest:目标数组
+destPos:目标数组的起始位置
+length:复制的长度
+src和dest必须为同类或可相互转换类型的数组
+*/
+```
+
+
+
+
+
+1、java hbase
+
+2、netty
+
+3、数制转换
+
+4、multi-thread
