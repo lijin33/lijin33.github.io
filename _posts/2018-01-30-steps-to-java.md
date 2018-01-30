@@ -1,3 +1,10 @@
+### steps to java
+
+
+
+##### 字符串和字符数组转换
+
+
 ```
 public static String accum(String s) {
     // your code
@@ -11,7 +18,7 @@ public static String accum(String s) {
         res.append(Character.toUpperCase(c));
         for(int j=0;j<i;j++)
         {  
-        	//Character是Char的包装类，Char是基本类型。
+            //Character是Char的包装类，Char是基本类型。
             res.append(Character.toLowerCase(c));
         }
      i++;
@@ -24,9 +31,7 @@ public static String accum(String s) {
 ```
 
 
-
-
-
+##### 将数组转换为字符串
 ```
 //array工具类的toString方法，将数组转换为字符串
 Arrays.toString(arr[i])
@@ -39,7 +44,7 @@ Arrays.toString(arr[i])
 java中的IO流中的输出流一般都有flush这个操作，这个操作的作用是强制将缓存中的输出流（字节流，字符流等）强制输出。
 
 
-
+##### 数组的遍历
 ```
 ArrayList lis = new ArrayList();
 ls.add("list");
@@ -50,7 +55,7 @@ for(int i=0;i<lis.size();i++)
 ```
 
 
-
+##### 类型转换
 int类型强制转换为string
 
 ```
