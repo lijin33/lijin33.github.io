@@ -122,6 +122,32 @@ src和dest必须为同类或可相互转换类型的数组
 
 
 
+![mark](http://owl3le8ji.bkt.clouddn.com/blog/180130/d4b1b1J6k4.png?imageslim)
+
+
+
+
+
+
+
+
+
+static final: 用来修饰成员变量和成员方法。对于变量，一旦赋值不可修改，通过类名可直接访问；对于方法，不可覆盖，可通过类名直接访问。
+
+
+
+类的继承: extends
+
+接口的实现: implements
+
+
+
+Integer.toString
+
+
+
+
+
 1、java hbase
 
 2、netty
