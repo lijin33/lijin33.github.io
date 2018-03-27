@@ -43,7 +43,7 @@ consecutives 3 is 6 ..."""
 
 #####Solution:
 
-明明没看答案就做对了却没给我积分QAQ...注册了leetcode账号，下回试试leetcode的题...
+明明没看答案就做对了却没给我积分QAQ...
 
 ```
 public static List<Integer> sumConsecutives(List<Integer> s) {
