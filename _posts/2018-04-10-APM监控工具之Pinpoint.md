@@ -133,7 +133,7 @@ hbase.client.port=2181
 
 
 
-##### 部署pinpoint
+##### 部署pinpoint-agent
 
 将pinpoint-agent copy至需要监控的程序所在服务器中，修改程序的启动脚本。
 
