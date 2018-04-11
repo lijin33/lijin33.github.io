@@ -213,6 +213,7 @@ Pinpoint-collector和Pinpoint-web均可做成docker镜像
 
 * *[https://blog.csdn.net/jinzhencs/article/details/54346299](https://blog.csdn.net/jinzhencs/article/details/54346299)*
 * *[https://yous.be/2015/05/05/using-pinpoint-with-docker/](https://yous.be/2015/05/05/using-pinpoint-with-docker/)*
+* [*https://github.com/yous/pinpoint-docker*](https://github.com/yous/pinpoint-docker)
 
 
 
