@@ -145,7 +145,7 @@ hbase.client.port=2181
    CATALINA_OPTS="$CATALINA_OPTS -Dpinpoint.applicationName=10.10.30.63_emp"	
    ```
 
-2. Jetty的情况，在启动脚本中添加：
+2. Springboot启动，在启动脚本中添加：
 
    ```
    -javaagent:/home/liuhy/pinpoint/pinpoint-bootstrap-1.7.2-SNAPSHOT.jar 
@@ -153,9 +153,9 @@ hbase.client.port=2181
    -Dpinpoint.applicationName=10.10.30.63_mdm
    ```
 
-   `Dpinpoint.agentId`为该程序在pinpoint中的编号，唯一且不可重复。
+   `Dpinpoint.agentId`为该程序在pinpoint中的编号，唯一且不可重复，一个agentId对应一个JVM。
 
-   `Dpinpoint.applicationName`为当前程序的名称，随意写。
+   `Dpinpoint.applicationName`相同应用的applicationName相同，agentId不同。如mdm有多个实例，则多个实例的applicationName都是mdm，但agentId需不同。
 
 修改启动脚本后重启服务，即可在pinpoint-web中看到该服务的当前状态和性能指标，如下图：
 
