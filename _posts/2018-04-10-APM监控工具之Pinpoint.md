@@ -157,6 +157,20 @@ hbase.client.port=2181
 
    `Dpinpoint.applicationName`相同应用的applicationName相同，agentId不同。如mdm有多个实例，则多个实例的applicationName都是mdm，但agentId需不同。
 
+   ​
+
+修改pinpoint-agent中的pinpoint.config配置文件：
+
+```
+  5 ###########################################################
+  6 # Collector server                                        # 
+  7 ###########################################################
+  8 #设置collector所在服务器的ip，本次实验中collector的ip为10.10.30.64
+  9 profiler.collector.ip=10.10.30.64
+```
+
+
+
 修改启动脚本后重启服务，即可在pinpoint-web中看到该服务的当前状态和性能指标，如下图：
 
 ![mark](http://owl3le8ji.bkt.clouddn.com/blog/180410/A9FBdD2fGi.png?imageslim)
