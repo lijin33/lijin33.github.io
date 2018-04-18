@@ -72,7 +72,7 @@ hbase-site.xml
 
 ```
 #添加以下配置
-<property>
+	<property>
         <name>zookeeper.znode.parent</name>
         <value>/hbase</value>
     </property>
@@ -227,7 +227,202 @@ Pinpoint-collector和Pinpoint-web均可做成docker镜像
 
 * *[https://blog.csdn.net/jinzhencs/article/details/54346299](https://blog.csdn.net/jinzhencs/article/details/54346299)*
 * *[https://yous.be/2015/05/05/using-pinpoint-with-docker/](https://yous.be/2015/05/05/using-pinpoint-with-docker/)*
-* [*https://github.com/yous/pinpoint-docker*](https://github.com/yous/pinpoint-docker)
+* [*https://github.com/yous/pinpoint-docker*
+
+
+
+
+#### Application Inspector部署
+
+经过几天的煎熬，终于把Application Inspector弄出来了！
+
+
+
+##### 编译pinpoint-flink-job.jar
+
+从编译开始就遭遇了这样那样的困难 __(:з」∠)_，一定要下pinpoint源码才行。
+
+编译之前要修改pp-src中的配置文件：
+
+- `pinpoint-flink.properties`，路径在`pp-src/flink/src/main/resources`
+
+  ```
+      flink.cluster.enable=true
+      #zookeeper在本机
+      flink.cluster.zookeeper.address=k8s-slave3
+      flink.cluster.zookeeper.sessiontimeout=3000
+      flink.cluster.zookeeper.retry.interval=5000
+      flink.cluster.tcp.port=19994
+      flink.StreamExecutionEnvironment=server
+      flink.sourceFunction.Parallel=1
+  ```
+
+
+- `hbase.properties`，路径同上
+
+  ```
+      #hbase在本机
+      hbase.client.host=k8s-slave3
+      hbase.client.port=2181
+  ```
+
+  ​
+
+然后就开始痛苦的编译！在pp-src路径下`./mvnw install -Dmaven.test.skip=true`
+
+在maven setting.xml中加入repository路径之后拒绝连接的问题得以改善，但是仍然重复编译了四五次才最终success！好几天电脑都没关*___(:з」∠)__*
+
+![mark](http://owl3le8ji.bkt.clouddn.com/blog/180418/2hE6lflh1g.png?imageslim)
+
+
+
+![mark](http://owl3le8ji.bkt.clouddn.com/blog/180418/dAI0hl0GeB.png?imageslim)
+
+最后终于编译成功了！
+
+![mark](http://owl3le8ji.bkt.clouddn.com/blog/180418/HikE4cb0JB.png?imageslim)
+
+编译pinpoint必须要配置JAVA6、JAVA7和JAVA8的环境变量嗯。
+
+从编译之后一步一步来，每个步骤也都是遇到了很多坑。
+
+
+
+##### Hbase和Zookeeper
+
+因为Flink也要用到zookeeper，所以就打算自己搭一个zookeeper，让hbase也用这个外置的zookeeper。然后就改了hbase的配置文件`hbase-env.sh`:
+
+```
+export HBASE_MANAGES_ZK=false
+```
+
+重启hbase时仍然报错，各种查了之后，修改`hbase.site.xml`如下：
+
+```
+<configuration>
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>zookeeper.znode.parent</name>
+    <value>/hbase</value>
+  </property>
+</configuration>
+```
+
+同时对zookeeper的配置文件也做了一些修改：
+
+复制zoo_sample.cfg并命名为zoo.cfg：
+
+```
+dataDir=/usr/hadoop/zookeeper-3.4.6/data
+# the port at which the clients will connect
+clientPort=2181
+```
+
+然后在zookeeper根目录下创建data文件夹，`cat 1>myid`。这一步骤以后再补充。
+
+然后启动hbase就可以啦ovo
+
+
+
+#####  Flink版本问题与部署
+
+一开始抱着什么都用最新的的想法使用了flink-1.4，后来看pinpoint github上的问答，1.4未经过验证且存在问题，推荐使用1.3.1版本，于是下了1.3.1版本。
+
+配置文件并没有改动很大，修改了`flink-conf.yaml`：
+
+```
+# The number of task slots that each TaskManager offers. Each slot runs one parallel pipeline.
+taskmanager.numberOfTaskSlots: 3
+```
+
+默认值是1，后来测试的时候发现slot数为1时会抱slot不够用的问题，于是改成了3。
+
+启动后可打开`http://10.10.30.64:8081`查看到flink dashboard，其中10.10.30.64为flink所在服务器ip。
+
+
+
+##### 执行pinpoint-flink-job
+
+在flink目录下执行已经编译好的jar包：
+
+```
+./flink run /home/liang/pinpoint/pp-src/flink/target/pinpoint-flink-job-1.8.0-SNAPSHOT.jar
+```
+
+正确启动后可以在flink dashboard中查看到这个job，运行状态为running：
+
+![mark](http://owl3le8ji.bkt.clouddn.com/blog/180418/c7FmH3mk3k.png?imageslim)
+
+
+
+##### 修改pinpoint collector配置文件
+
+如[*official-guide*](http://naver.github.io/pinpoint/applicationinspector.html)所说，修改了几处配置文件，实际上有些出入。
+
+修改` pinpoint-collector.properties`：
+
+```
+    flink.cluster.enable=true
+    flink.cluster.zookeeper.address=k8s-slave3
+    flink.cluster.zookeeper.sessiontimeout=3000
+```
+
+重启collector后报出`TcpDataSender is null`问题，于是在配置文件中启用tcp receiver
+
+修改` pinpoint-collector.properties`：
+
+```
+collector.receiver.stat.tcp=true
+collector.receiver.stat.tcp.ip=0.0.0.0
+collector.receiver.stat.tcp.port=9995
+collector.receiver.span.tcp=true
+collector.receiver.span.tcp.ip=0.0.0.0
+collector.receiver.span.tcp.port=9996
+```
+
+重启后不再报错。猜测应该可以设置成udp的，待考。
+
+
+
+##### 修改pinpoint web配置文件
+
+如[*official-guide*](http://naver.github.io/pinpoint/applicationinspector.html)所说，修改了几处配置文件。
+
+修改`pinpoint-web.properties`：
+
+```
+config.show.applicationStat=true
+```
+
+修改`batch.properties`：
+
+```
+#flink server所在服务器
+batch.flink.server=k8s-slave3
+```
+
+修改`applicationContext-batch-schedule.xml`，可设置各job的执行频率：
+
+```
+<task:scheduled-tasks scheduler="scheduler">
+	...
+	<task:scheduled ref="batchJobLauncher" method="flinkCheckJob" cron="0 0/10 * * * *" />
+</task:scheduled-tasks>
+```
+
+
+
+现在打开pinpoint web，选择一个application，点击Inspector就可查看Inspector了
+
+![mark](http://owl3le8ji.bkt.clouddn.com/blog/180418/hec1GfAmjh.png?imageslim)
+
+
+
+![mark](http://owl3le8ji.bkt.clouddn.com/blog/180418/98A2Km9Ebj.png?imageslim)
+
 
 
 
