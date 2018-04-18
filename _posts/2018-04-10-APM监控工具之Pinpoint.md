@@ -234,6 +234,8 @@ Pinpoint-collector和Pinpoint-web均可做成docker镜像
 
 #### Application Inspector部署
 
+Application Inspector在我的理解看来就是如果一个application是集群的，可以通过inspector查看相同application name的应用的所有资源使用情况。
+
 经过几天的煎熬，终于把Application Inspector弄出来了！
 
 
