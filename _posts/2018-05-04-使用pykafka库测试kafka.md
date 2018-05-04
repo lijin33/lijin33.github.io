@@ -37,6 +37,8 @@ producer.stop()
 
 在kafka目录下执行`./kafka-console-consumer.sh --zookeeper 10.10.30.66:2181 --topic normalAlarm --from-beginning`，即可看见刚刚发出的消息。
 
+![mark](http://owl3le8ji.bkt.clouddn.com/blog/180504/E7AH31fg8J.png?imageslim)
+
 
 
 ##### 消费数据
@@ -59,3 +61,4 @@ for message in consumer:
 print("+++++++++++++++++++++++++++++")
 ```
 
+![mark](http://owl3le8ji.bkt.clouddn.com/blog/180504/hII1BmHfAb.png?imageslim)
