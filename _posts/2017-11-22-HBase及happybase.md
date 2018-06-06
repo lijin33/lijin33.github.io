@@ -49,6 +49,8 @@ timestamp：按指定时间戳查询
 
 reverse：默认为False。为True时，scan结果按rowkey倒序排列
 
+columns：查询指定列，如：['lz:state','lz:timestamp']
+
 e.g：
 
 ```
@@ -60,6 +62,21 @@ t = connection.table('iot_flow_history')
 #按row前缀遍历查询数据，因该工程存入hbase的rowkey为id-timestamp，使用rowkey查询十分不方便，故使用row_prefix进行查询
 for key,value in t.scan(row_prefix='1100HD72004016A16'):
     print key,value
+```
+
+查询指定列的数据：
+
+```
+#查询列族lz下列为state的数据
+for key,value in t.scan(row_prefix= bytes('11000066100000000', encoding = "utf8"),columns=['lz:state','lz:timestamp']): 
+	print(key,value)
+```
+
+结果：
+
+```
+b'11000066100000000' {b'lz:state': b'0', b'lz:timestamp': b'201806051140544054'}
+b'110000661000000001' {b'lz:state': b'0', b'lz:timestamp': b'201806051140544054'}
 ```
 
 
