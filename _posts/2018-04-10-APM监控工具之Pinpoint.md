@@ -227,7 +227,7 @@ Pinpoint-collector和Pinpoint-web均可做成docker镜像
 
 * *[https://blog.csdn.net/jinzhencs/article/details/54346299](https://blog.csdn.net/jinzhencs/article/details/54346299)*
 * *[https://yous.be/2015/05/05/using-pinpoint-with-docker/](https://yous.be/2015/05/05/using-pinpoint-with-docker/)*
-* [*https://github.com/yous/pinpoint-docker*
+* *https://github.com/yous/pinpoint-docker*
 
 
 
@@ -340,7 +340,7 @@ clientPort=2181
 taskmanager.numberOfTaskSlots: 3
 ```
 
-默认值是1，后来测试的时候发现slot数为1时会抱slot不够用的问题，于是改成了3。
+默认值是1，后来测试的时候发现slot数为1时会报slot不够用的问题，于是改成了3。
 
 启动后可打开`http://10.10.30.64:8081`查看到flink dashboard，其中10.10.30.64为flink所在服务器ip。
 
